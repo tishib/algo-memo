@@ -1,4 +1,4 @@
-# algo-
+# algo-note
 
 ### Dijkstra法 (WIP)
 ```
