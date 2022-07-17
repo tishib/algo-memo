@@ -87,4 +87,5 @@ int main(void) {
 }
 ```
 
-### Kadane法 (WIP)
+### Kadane法 (TBD)
+### Kruskal法 (TBD)
