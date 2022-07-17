@@ -1,4 +1,5 @@
-# algo-note
+# algo
+アルゴリズムに関する個人的なメモ。
 
 ### Dijkstra法 (WIP)
 ```
@@ -40,6 +41,8 @@ std::vector<int> dij(Graph &g, int start) {
     int idx = p.second();
     if (dis[idx] < p.first)
       continue;
+
+    //
     // TODO
   }
 
@@ -61,3 +64,5 @@ int main(void) {
   return 0;
 }
 ```
+
+### Kadane法 (WIP)
