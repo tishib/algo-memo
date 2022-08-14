@@ -6,7 +6,7 @@
 
 ### Dijkstra法
 <p align="left">
-  <img src="img/dij.png" width="500" hegiht="400">
+  <img src="img/dij.jpg" width="500" hegiht="400">
 </p>
 Fig. dij-1.
 
