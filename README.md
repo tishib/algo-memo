@@ -1,23 +1,25 @@
 # algo-memo
 アルゴリズムに関する個人的な備忘録です。今のところ雑多
 
-### Dijkstra法 (WIP)
+
+
+
+### Dijkstra法
 ```
-//
-// 説明
-//
-TODO
+ある点からの最短距離を求めるときに便利なアルゴリズムです。
+以下の実装は Figure 1 のようなグラフにおいて、黄色い点からスタートして、他の点に着くまでの最短距離(赤いラベルの数字)を求めたものです。
+1) TODO
+2) TODO
+3) TODO
 
 
 //
 // 実装
 //
-TDOO
 #include <climits>
 #include <queue>
 #include <vector>
 
-#include <cassert>
 #include <iostream>
 
 class Edge {
@@ -30,41 +32,42 @@ public:
 using Graph = std::vector<std::vector<Edge>>;
 using Pair = std::pair<int, int>; // dis[i], i
 
-std::vector<int> dij(Graph &g, int start) {
+void dij(Graph &g, int start, std::vector<int> &dis) {
   int g_size = g.size();
-  // 3)
   std::priority_queue<Pair, std::vector<Pair>, std::greater<Pair>> pq;
-  std::vector<int> dis;
 
-  // 4)
+  // 1)
   dis = std::vector<int>(g_size, INT_MAX);
-  // 5)
   dis[start] = 0;
   pq.emplace(dis[start], start);
+
   while (!pq.empty()) {
-    // 6)
     Pair p = pq.top();
     pq.pop();
 
+    // 2)
+    int cur_dis = p.first;
     int idx = p.second;
-    // 7)
-    if (dis[idx] < p.first)
+    if (dis[idx] < cur_dis) {
       continue;
+    }
 
-    // 8) 現在のノードに隣接するノードをキューに追加する
-    for (auto &&e : g[idx]) {
-      if (dis[e.next] > dis[idx] + e.len) { // もっと短い経路が見つかったら、最短経路の配列dis[]の値を更新
-	dis[e.next] = dis[idx] + e.len;
-	pq.emplace(dis[e.next], e.next);
+    for (auto e : g[idx]) {
+      int next = e.next;
+      int len = e.len;
+
+      // 3)
+      if (dis[next] > cur_dis + len) {
+        dis[next] = cur_dis + len;
+        pq.emplace(dis[next], next);
       }
     }
   }
 
-  return dis;
+  return;
 }
 
 int main(void) {
-  // 1)
   Graph g = {
     {Edge(1,5), Edge(2,1), Edge(3,3)},
     {Edge(0,5), Edge(2,2)},
@@ -75,17 +78,18 @@ int main(void) {
   int start = 0;
   std::vector<int> dis;
 
-  // 2)
-  dis = dij(g, start);
-  assert(dis[1] == 3);
-  assert(dis[2] == 1);
-  assert(dis[3] == 3);
-  assert(dis[4] == 4);
+  dij(g, start, dis);
 
-  std::cout << "DONE";
+  // 結果の確認
+  for (auto d : dis) {
+    std::cout << d << " ";
+  }
+
   return 0;
 }
 ```
+
+
 
 ### Kadane法 (TBD)
 ### Kruskal法 (TBD)
